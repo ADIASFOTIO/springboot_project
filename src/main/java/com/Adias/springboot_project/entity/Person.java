@@ -20,7 +20,7 @@ public class Person {
 
     private String cf;
     private LocalDate dateOfBurn;
-    private int age;
+    private Integer age;
 
 
 }

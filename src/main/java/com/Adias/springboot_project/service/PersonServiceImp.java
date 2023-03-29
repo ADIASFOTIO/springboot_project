@@ -3,8 +3,11 @@ package com.Adias.springboot_project.service;
 import com.Adias.springboot_project.entity.Person;
 import com.Adias.springboot_project.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,4 +44,42 @@ public class PersonServiceImp implements PersonService{
         Person deletePerson = personRepository.findById(id).get();
         personRepository.delete(deletePerson);
     }
+
+    @Override
+    public List<Person> findPersonMaggiorenni() {
+        if(personRepository.findPersonMaggiorenni().isPresent()){
+          return personRepository.findPersonMaggiorenni().get();
+        }else
+        return new ArrayList<Person>();
+    }
+
+    @Override
+    public Optional<Person> findWithId() {
+        if(personRepository.findWithId().isPresent()){
+            return Optional.of(personRepository.findWithId().get());
+        }else
+        return Optional.of(new Person());
+
+    }
+
+    @Override
+    public List<Person> findByQueryByExample(String nome) {
+        // definisco un filtro
+        Person filtro = new Person();
+        filtro.setName(nome);
+        //filtro.setCf(null);
+        //filtro.setFirstName(null);
+        // definizione dell' ogetto ExampleMacher
+        ExampleMatcher matcher = ExampleMatcher.matching().
+                withIgnoreCase().withIgnoreNullValues()
+                .withStringMatcher(ExampleMatcher
+                .StringMatcher.CONTAINING);
+        // definizione dell'ogetto example
+        Example<Person> ex = Example.of(filtro,matcher);
+        List<Person> result = personRepository.findAll(ex);
+        return result;
+    }
+
+
 }
+
