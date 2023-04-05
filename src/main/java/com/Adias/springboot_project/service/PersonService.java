@@ -14,6 +14,8 @@ public interface PersonService {
     List<Person> findPersonMaggiorenni();
     Optional<Person> findWithId();
     List<Person> findByQueryByExample(String nome);
+    List<Person> findByEtaMethodName(Integer age);
+    List<Person> getPersonMaggiorenni2();
 
 
 }

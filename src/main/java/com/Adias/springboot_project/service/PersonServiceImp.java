@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonServiceImp implements PersonService{
@@ -78,6 +79,18 @@ public class PersonServiceImp implements PersonService{
         Example<Person> ex = Example.of(filtro,matcher);
         List<Person> result = personRepository.findAll(ex);
         return result;
+    }
+
+    @Override
+    public List<Person> findByEtaMethodName(Integer age) {
+        return personRepository.findByAgeGreaterThanEqual(age);
+    }
+
+    @Override
+    public List<Person> getPersonMaggiorenni2() {
+        return personRepository.findAll().stream()
+                .filter(person -> person.getAge()>=18)
+                .collect(Collectors.toList());
     }
 
 
