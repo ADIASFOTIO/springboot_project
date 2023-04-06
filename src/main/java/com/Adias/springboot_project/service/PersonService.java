@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PersonService {
-    void save(Person p);
+    Person save(Person p);
     List<Person> getAll();
     Person update (Person p);
     void delete(Long id);

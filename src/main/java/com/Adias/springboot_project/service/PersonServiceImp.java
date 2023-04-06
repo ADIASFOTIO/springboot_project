@@ -17,9 +17,10 @@ public class PersonServiceImp implements PersonService{
     @Autowired
     PersonRepository personRepository;
     @Override
-    public void save(Person p) {
+    public Person save(Person p) {
         personRepository.save(p);
 
+        return p;
     }
 
     @Override

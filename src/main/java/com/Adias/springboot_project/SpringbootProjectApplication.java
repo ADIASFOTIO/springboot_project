@@ -17,6 +17,19 @@ public class SpringbootProjectApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootProjectApplication.class, args);
 	}
+	@Bean
+	public CommandLineRunner demo(PersonService personService){
+		return (args) -> {
+				Person p1 = new Person();
+			    p1.setCf("476fhhdghdhhc");
+				p1.setAge(34);
+				p1.setName("junior");
+				p1.setFirstName("adias");
+				p1.setDateOfBurn(LocalDate.now());
+				personService.save(p1);
+
+		};
+	}
 
 
 
