@@ -34,8 +34,8 @@ public class PersonServiceImp implements PersonService{
         Person updatePerson = personRepository.findById(p.getId()).get();
         updatePerson.setName(p.getName());
         updatePerson.setCf(p.getCf());
-        updatePerson.setDateOfBurn(p.getDateOfBurn());
-        updatePerson.setFirstName(p.getFirstName());
+        updatePerson.setDateofburn(p.getDateofburn());
+        updatePerson.setFirstname(p.getFirstname());
         updatePerson.setAge(p.getAge());
         personRepository.save(updatePerson);
         return updatePerson;

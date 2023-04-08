@@ -21,4 +21,8 @@ public class PersonController {
     public Person insertPerson(@RequestBody Person input){
        return personService.save(input);
     }
+    @DeleteMapping("/{id}")
+    public void deletePerson(@RequestBody Long id){
+         personService.delete(id);
+    }
 }

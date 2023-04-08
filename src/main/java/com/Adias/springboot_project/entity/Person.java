@@ -1,25 +1,24 @@
 package com.Adias.springboot_project.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "person")
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "person_generator", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "person_generator", sequenceName = "person_sequence", allocationSize = 1)
+    @Column(name= "id")
     private Long id;
     private String name;
-    private String firstName;
-
+    private String firstname;
     private String cf;
-    private LocalDate dateOfBurn;
+    private LocalDate dateofburn;
     private Integer age;
 
 

@@ -16,6 +16,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Optional<Person> findWithId();
 
     List<Person> findByAgeGreaterThanEqual(Integer age);
+    List<Person> findAll();
 
 }
 
